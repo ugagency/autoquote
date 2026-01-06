@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">AutoQuote</h1>
+                    <p class="text-gray-600">Configurações do Perfil</p>
+                </div>
+                <a href="{{ url_for('main.dashboard') }}"
+                   class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+                    Voltar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto mt-10 px-4 space-y-8">
+        <!-- Configurações do Vale -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-semibold mb-6">🔧 Configurações do Vale</h2>
+            
+            <form method="POST" action="{{ url_for('profile.profile') }}" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email do Vale</label>
+                    <input type="email" name="vale_email" 
+                           value="{{ vale_config.vale_email if vale_config else '' }}" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Senha do Vale</label>
+                    <input type="password" name="vale_password" 
+                           value="{{ vale_config.vale_password if vale_config else '' }}" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    <p class="text-sm text-gray-500 mt-1">Suas credenciais são armazenadas de forma segura.</p>
+                </div>
+
+                <button type="submit" 
+                        class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg">
+                    Salvar Configurações do Vale
+                </button>
+            </form>
+        </div>
+
+        <!-- Alterar Senha do AutoQuote -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-semibold mb-6">🔒 Alterar Senha do AutoQuote</h2>
+
+            <form method="POST" action="{{ url_for('profile.change_password') }}" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Senha Atual</label>
+                    <input type="password" name="senha_atual" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nova Senha</label>
+                    <input type="password" name="nova_senha" required minlength="6"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Confirmar Nova Senha</label>
+                    <input type="password" name="confirmar_senha" required minlength="6"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <button type="submit"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg">
+                    Atualizar Senha
+                </button>
+            </form>
+        </div>
+    </main>
+</div>
+{% endblock %}

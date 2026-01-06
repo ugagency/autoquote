@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+  <!-- Cabeçalho -->
+  <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center py-4">
+              <div>
+                  <h1 class="text-2xl font-bold text-gray-900">Controle de Usuários</h1>
+                  <p class="text-gray-600">Gerencie os perfis cadastrados no sistema</p>
+              </div>
+              <div class="flex space-x-3">
+                  <a href="{{ url_for('admin.create_user') }}"
+                     class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                      ➕ Novo Usuário
+                  </a>
+                  <a href="{{ url_for('main.dashboard') }}"
+                     class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+                      Voltar
+                  </a>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Tabela -->
+  <div class="max-w-5xl mx-auto mt-10 bg-white shadow p-6 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">Usuários</h2>
+
+    <table class="min-w-full text-left border">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-2">ID</th>
+          <th class="p-2">Nome</th>
+          <th class="p-2">Email</th>
+          <th class="p-2">Função</th>
+          <th class="p-2">Status</th>
+          <th class="p-2">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr class="border-b">
+          <td class="p-2">{{ user.id }}</td>
+          <td class="p-2">{{ user.nome }}</td>
+          <td class="p-2">{{ user.email }}</td>
+          <td class="p-2">
+            {% if user.is_admin %}
+              <span class="text-blue-600 font-semibold">Administrador</span>
+            {% else %}
+              Usuário
+            {% endif %}
+          </td>
+          <td class="p-2">
+            <span id="status-{{ user.id }}"
+                  class="font-semibold {% if user.is_active %}text-green-600{% else %}text-red-600{% endif %}">
+                {{ "Ativo" if user.is_active else "Desativado" }}
+            </span>
+          </td>
+          <td class="p-2 space-x-2">
+            <!-- Botão Ativar/Desativar -->
+            <button class="toggle-btn bg-gray-200 hover:bg-gray-300 text-sm font-semibold px-3 py-1 rounded"
+                    data-id="{{ user.id }}"
+                    data-status="{{ 'true' if user.is_active else 'false' }}">
+              {% if user.is_active %}Desativar{% else %}Ativar{% endif %}
+            </button>
+
+            <!-- Botão Excluir -->
+            <form action="{{ url_for('admin.delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
+              <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+                Excluir
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Script de alternância de status -->
+  <script>
+  document.querySelectorAll(".toggle-btn").forEach(btn => {
+      btn.addEventListener("click", async () => {
+          const userId = btn.getAttribute("data-id");
+          const currentStatus = btn.getAttribute("data-status") === "true";
+          const novoStatus = !currentStatus;
+
+          btn.disabled = true;
+          btn.textContent = "Atualizando...";
+
+          try {
+              const resp = await fetch(`/admin/toggle_user/${userId}`, {
+                  method: "POST",
+                  headers: {"Content-Type": "application/json"},
+                  body: JSON.stringify({ativo: novoStatus})
+              });
+
+              const data = await resp.json();
+              if (data.sucesso) {
+                  const statusSpan = document.getElementById(`status-${userId}`);
+                  statusSpan.textContent = novoStatus ? "Ativo" : "Desativado";
+                  statusSpan.className = novoStatus
+                      ? "font-semibold text-green-600"
+                      : "font-semibold text-red-600";
+
+                  btn.textContent = novoStatus ? "Desativar" : "Ativar";
+                  btn.setAttribute("data-status", novoStatus);
+              } else {
+                  alert("Erro ao atualizar status: " + (data.erro || "desconhecido"));
+              }
+          } catch (e) {
+              console.error(e);
+              alert("Erro de conexão.");
+          } finally {
+              btn.disabled = false;
+          }
+      });
+  });
+  </script>
+{% endblock %}

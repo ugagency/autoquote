@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-white">
+    <img src="../static/logo.jpg" alt="Logo" class="absolute top-10 left-100 w-4096 h-auto">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mt-4">Bem-vindo ao AutoQuote</h2>
+            <p class="text-gray-600 mt-2">Robô de Eventos Vale</p>
+        </div>
+
+        <!-- Login Form -->
+        <form method="POST" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="email" name="email" required 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+               <input type="password" name="password" required 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+
+            </div>
+
+            <button type="submit" 
+                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors">
+                Entrar
+            </button>
+        </form>
+        <div class="mt-6 text-center">
+            <a href="{{ url_for('auth.forgot_password') }}" class="text-blue-500 hover:text-blue-600">
+                Esqueceu sua senha?
+            </a>
+        <!-- Credenciais de teste -->
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+            <p class="text-sm text-gray-600 text-center">
+                <strong>Teste:</strong> admin@autoquote.com / 123456
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

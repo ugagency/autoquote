@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="min-h-screen bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4">
+                <div class="mb-3 sm:mb-0">
+                    <img src="../static/logo.jpg" alt="Logo" class="absolute top-8 left-8 w-32 h-auto">
+                    <p class="text-gray-600 absolute top-8 left-43">Bem-vindo, {{ user.nome }}!</p>
+                </div>
+
+                <!-- Navbar -->
+                <nav class="bg-gray-50 rounded-lg shadow-sm px-4 py-2">
+                    <ul class="flex flex-wrap items-center space-x-4 text-sm font-medium text-gray-700">
+                        <li>
+                            <a href="{{ url_for('profile.profile') }}"
+                               class="hover:text-blue-600 transition-colors">
+                                Meu Perfil
+                            </a>
+                        </li>
+                        {% if user.is_admin %}
+                        <a href="{{ url_for('admin.manage_users') }}"
+                           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg ml-3">
+                            Controle de Usuários
+                        </a>
+                        {% endif %}
+                        <li>
+                            <a href="{{ url_for('auth.logout') }}"
+                               class="text-red-600 hover:text-red-700 font-semibold transition-colors">
+                                Sair
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto mt-10 px-4">
+
+        <!-- Card principal -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">🤖 Robô de Coleta Vale</h2>
+                <button id="btn-executar-robo"
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg flex items-center transition-colors">
+                    <i class="bi bi-play-fill mr-2"></i> Executar Robô
+                </button>
+            </div>
+
+            <!-- Status -->
+            <div class="border rounded-lg p-4 bg-gray-50">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-lg font-semibold text-gray-800">Status da Execução</h3>
+                    <span id="status-badge"
+                          class="px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
+                        🟢 Pronto
+                    </span>
+                </div>
+
+                <!-- Barra de progresso -->
+                <div class="w-full bg-gray-200 rounded-full h-2 mb-3">
+                    <div id="progress-bar"
+                         class="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                         style="width: 0%">
+                    </div>
+                </div>
+
+                <!-- Mensagem -->
+                <div id="status-message" class="text-gray-600 text-sm">
+                    Pronto para executar
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados -->
+        <div id="resultado-download" class="mt-6 bg-white rounded-lg shadow p-6">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">📄 Planilha Gerada</h3>
+                    <p class="text-gray-600">A coleta foi concluída e a planilha está disponível para download.</p>
+                </div>
+                <a id="download-btn"
+                   href="/vale/download"
+                   class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg flex items-center transition-colors hidden">
+                    <i class="bi bi-download mr-2"></i>
+                    Baixar Planilha
+                </a>
+            </div>
+
+            <!-- Lista de planilhas anteriores -->
+            <div id="lista-planilhas" class="mt-4">
+                <h4 class="font-semibold text-gray-700 mb-2">🗂 Últimas planilhas geradas:</h4>
+                <div id="container-arquivos" class="space-y-2">
+                    <!-- Os arquivos serão inseridos aqui via JavaScript -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- Modal de data -->
+<div id="modal-data"
+     class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+        <h2 class="text-lg font-semibold mb-4 text-gray-800">Selecione a data da coleta</h2>
+        <input id="input-data" type="date"
+               class="form-input mb-4 w-full border-gray-300 rounded-md shadow-sm">
+        <div class="flex justify-end space-x-3">
+            <button id="cancelar-btn"
+                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg">
+                Cancelar
+            </button>
+            <button id="confirmar-btn"
+                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                Confirmar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const btnExecutar = document.getElementById('btn-executar-robo');
+    const modal = document.getElementById('modal-data');
+    const inputData = document.getElementById('input-data');
+    const confirmarBtn = document.getElementById('confirmar-btn');
+    const cancelarBtn = document.getElementById('cancelar-btn');
+    const statusBadge = document.getElementById('status-badge');
+    const progressBar = document.getElementById('progress-bar');
+    const statusMessage = document.getElementById('status-message');
+    const resultadoDownload = document.getElementById('resultado-download');
+    const downloadBtn = document.getElementById('download-btn');
+    const containerArquivos = document.getElementById('container-arquivos');
+
+    // === Abrir modal ===
+    btnExecutar.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        inputData.value = '';
+    });
+
+    // === Cancelar modal ===
+    cancelarBtn.addEventListener('click', () => modal.classList.add('hidden'));
+
+    // === Confirmar e executar ===
+    confirmarBtn.addEventListener('click', () => {
+        if (!inputData.value) {
+            alert('Por favor, selecione uma data válida.');
+            return;
+        }
+        const [ano, mes, dia] = inputData.value.split('-');
+        const dataFormatada = `${dia}${mes}${ano.slice(-2)}`;
+
+        fetch('/vale/executar', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ data_coleta: dataFormatada })
+        })
+        .then(r => r.json())
+        .then(data => {
+            modal.classList.add('hidden');
+            statusMessage.textContent = 'Robô iniciado...';
+            statusBadge.textContent = '🟡 Executando';
+            statusBadge.className = 'px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-800';
+            progressBar.style.width = '0%';
+            resultadoDownload.classList.add('hidden');
+            btnExecutar.disabled = true;
+        })
+        .catch(err => {
+            console.error('❌ Erro ao iniciar robô:', err);
+            alert('Erro ao iniciar o robô.');
+        });
+    });
+
+    // === Função para criar item de arquivo com botão ===
+    function criarItemArquivo(arquivo) {
+        return `
+            <div class="flex justify-between items-center bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <span class="text-gray-800 font-medium">${arquivo}</span>
+                <a href="/vale/download/${arquivo}" 
+                   class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg flex items-center transition-colors text-sm">
+                    <i class="bi bi-download mr-2"></i>
+                    Baixar
+                </a>
+            </div>
+        `;
+    }
+
+    // === Atualiza o status ===
+    function atualizarStatus() {
+        fetch('/vale/status')
+            .then(r => r.json())
+            .then(data => {
+                statusMessage.textContent = data.mensagem || '...';
+                progressBar.style.width = (data.progresso || 0) + '%';
+
+                if (data.executando) {
+                    statusBadge.textContent = '🟡 Executando';
+                    statusBadge.className = 'px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-800';
+                    btnExecutar.disabled = true;
+                    resultadoDownload.classList.add('hidden');
+                } else {
+                    statusBadge.textContent = '🟢 Pronto';
+                    statusBadge.className = 'px-3 py-1 rounded-full text-sm bg-green-100 text-green-800';
+                    btnExecutar.disabled = false;
+
+                    if (data.planilha_disponivel && data.arquivo_recente) {
+                        resultadoDownload.classList.remove('hidden');
+                        downloadBtn.href = `/vale/download/${data.arquivo_recente}`;
+                        downloadBtn.classList.remove('hidden');
+                    }
+
+                    // Atualiza lista de planilhas com botões
+                    if (data.planilhas && data.planilhas.length > 0) {
+                        containerArquivos.innerHTML = '';
+                        data.planilhas.forEach(arquivo => {
+                            containerArquivos.innerHTML += criarItemArquivo(arquivo);
+                        });
+                    } else {
+                        containerArquivos.innerHTML = '<p class="text-gray-500">Nenhuma planilha gerada ainda.</p>';
+                    }
+                }
+            })
+            .catch(err => console.error('Erro ao atualizar status:', err));
+    }
+
+    setInterval(atualizarStatus, 3000);
+    atualizarStatus();
+});
+</script>
+
+{% endblock %}

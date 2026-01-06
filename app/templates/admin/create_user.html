@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-lg mx-auto mt-10 bg-white shadow p-6 rounded-lg">
+  <h2 class="text-xl font-bold mb-4 text-gray-800">👤 Criar Novo Usuário</h2>
+  <form method="POST" action="{{ url_for('admin.create_user') }}">
+    <div class="mb-4">
+      <label class="block text-gray-700 font-medium">Nome</label>
+      <input name="nome" type="text" class="w-full border rounded px-3 py-2" required>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 font-medium">Email</label>
+      <input name="email" type="email" class="w-full border rounded px-3 py-2" required>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 font-medium">Senha</label>
+      <input name="password" type="password" class="w-full border rounded px-3 py-2" required>
+    </div>
+
+    <div class="flex items-center mb-4">
+      <input type="checkbox" name="is_admin" id="is_admin" class="mr-2">
+      <label for="is_admin" class="text-gray-700">Administrador</label>
+    </div>
+
+    <button type="submit"
+      class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+      Criar Usuário
+    </button>
+
+    <a href="{{ url_for('admin.manage_users') }}"
+       class="ml-3 text-gray-600 hover:underline">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

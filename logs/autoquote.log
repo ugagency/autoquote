@@ -1,0 +1,484 @@
+2025-11-05 15:36:52,828 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 15:38:25,627 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-05 15:38:33,179 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.emanuele%40sevensuprimentos.com.br "HTTP/1.1 200 OK"
+2025-11-05 15:38:42,669 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 15:38:43,668 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-05 15:38:43,775 [INFO] ====== WebDriver manager ======
+2025-11-05 15:38:44,354 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 15:38:45,122 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 15:38:45,862 [INFO] There is no [linux64] chromedriver "142.0.7444.59" for browser google-chrome "142.0.7444" in cache
+2025-11-05 15:38:45,863 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 15:38:54,895 [INFO] WebDriver version 142.0.7444.59 selected
+2025-11-05 15:38:54,903 [INFO] Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/142.0.7444.59/linux64/chromedriver-linux64.zip
+2025-11-05 15:38:54,904 [INFO] About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/142.0.7444.59/linux64/chromedriver-linux64.zip
+2025-11-05 15:38:55,125 [INFO] Driver downloading response is 200
+2025-11-05 15:38:59,579 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 15:39:00,541 [INFO] Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59]
+2025-11-05 15:40:27,489 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-05 15:43:57,384 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 15:45:33,936 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-05 15:45:46,474 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&order=created_at.desc "HTTP/1.1 200 OK"
+2025-11-05 15:46:39,272 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 15:46:42,253 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-05 15:46:42,473 [INFO] ====== WebDriver manager ======
+2025-11-05 15:46:43,076 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 15:46:44,362 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 15:46:45,339 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 15:47:37,631 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-05 15:49:20,051 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.emanuele%40sevensuprimentos.com.br "HTTP/1.1 200 OK"
+2025-11-05 16:13:21,526 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 16:13:36,502 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 16:13:39,240 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-05 16:13:39,423 [INFO] ====== WebDriver manager ======
+2025-11-05 16:13:39,598 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 16:13:40,559 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 16:13:42,057 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 16:25:39,471 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 16:56:31,528 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 16:57:05,844 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 16:57:08,398 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-05 16:57:08,581 [INFO] ====== WebDriver manager ======
+2025-11-05 16:57:08,737 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 16:57:10,053 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 16:57:11,053 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 16:57:19,712 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-05 16:58:04,961 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-05 16:58:06,420 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-05 17:18:49,996 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 17:19:06,414 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 17:19:08,871 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-05 17:19:09,055 [INFO] ====== WebDriver manager ======
+2025-11-05 17:19:09,265 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 17:19:10,347 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 17:19:11,256 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 17:19:23,151 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 17:19:24,553 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-05 17:19:24,698 [INFO] ====== WebDriver manager ======
+2025-11-05 17:19:24,875 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 17:19:25,896 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 17:19:27,154 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 17:48:18,659 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 17:49:13,460 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 17:49:14,642 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 17:49:15,649 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-05 17:49:15,813 [INFO] ====== WebDriver manager ======
+2025-11-05 17:49:15,985 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 17:49:16,066 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-05 17:49:16,165 [INFO] ====== WebDriver manager ======
+2025-11-05 17:49:16,295 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 17:49:16,858 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 17:49:17,396 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 17:49:17,729 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 17:49:18,501 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 18:06:45,480 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 18:26:31,191 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 18:27:27,895 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 18:27:29,424 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 18:27:30,501 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-05 18:27:30,848 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-05 18:27:30,879 [INFO] ====== WebDriver manager ======
+2025-11-05 18:27:30,964 [INFO] ====== WebDriver manager ======
+2025-11-05 18:27:31,128 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 18:27:31,148 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 18:27:32,275 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 18:27:32,426 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 18:27:33,216 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 18:27:33,360 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 18:28:44,986 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&order=created_at.desc "HTTP/1.1 200 OK"
+2025-11-05 18:37:32,534 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 18:37:47,265 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 18:37:49,219 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-05 18:37:49,577 [INFO] ====== WebDriver manager ======
+2025-11-05 18:37:49,715 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 18:37:50,612 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-05 18:37:51,554 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.59/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-05 18:38:09,429 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-05 18:56:20,765 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 18:57:24,213 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-05 18:58:01,600 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-05 18:58:05,974 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-05 19:04:45,623 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 11:33:22,462 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 11:33:26,362 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 11:43:07,173 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 11:43:44,165 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 11:44:04,321 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.emanuele%40sevensuprimentos.com.br "HTTP/1.1 200 OK"
+2025-11-06 11:44:14,146 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 11:44:15,917 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-06 11:44:16,102 [INFO] ====== WebDriver manager ======
+2025-11-06 11:44:16,570 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 11:44:17,764 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 11:44:18,839 [INFO] There is no [linux64] chromedriver "142.0.7444.61" for browser google-chrome "142.0.7444" in cache
+2025-11-06 11:44:18,840 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 11:44:21,189 [INFO] WebDriver version 142.0.7444.61 selected
+2025-11-06 11:44:21,199 [INFO] Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/142.0.7444.61/linux64/chromedriver-linux64.zip
+2025-11-06 11:44:21,201 [INFO] About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/142.0.7444.61/linux64/chromedriver-linux64.zip
+2025-11-06 11:44:22,414 [INFO] Driver downloading response is 200
+2025-11-06 11:44:28,742 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 11:44:30,088 [INFO] Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.61]
+2025-11-06 13:51:25,240 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 13:52:29,481 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 13:53:33,671 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 13:54:07,888 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 13:54:09,014 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 13:54:24,766 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-06 13:55:10,087 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 13:55:11,680 [INFO] HTTP Request: PATCH https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-06 13:55:15,100 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 13:55:16,220 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-06 13:55:46,140 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 13:56:30,054 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 13:56:31,451 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 14:06:42,503 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&order=created_at.desc "HTTP/1.1 200 OK"
+2025-11-06 14:21:21,883 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 14:21:58,948 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 14:31:15,530 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 14:31:19,131 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 14:31:36,825 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 14:31:46,948 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 14:31:55,399 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-06 14:32:06,160 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&order=created_at.desc "HTTP/1.1 200 OK"
+2025-11-06 14:32:15,485 [INFO] HTTP Request: PATCH https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-06 14:32:41,888 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.emanuele%40sevensuprimentos.com.br "HTTP/1.1 200 OK"
+2025-11-06 14:33:06,627 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 14:33:08,996 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-06 14:33:09,127 [INFO] ====== WebDriver manager ======
+2025-11-06 14:33:09,924 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 14:33:11,243 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 14:33:12,345 [INFO] There is no [linux64] chromedriver "142.0.7444.61" for browser google-chrome "142.0.7444" in cache
+2025-11-06 14:33:12,346 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 14:33:15,206 [INFO] WebDriver version 142.0.7444.61 selected
+2025-11-06 14:33:15,214 [INFO] Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/142.0.7444.61/linux64/chromedriver-linux64.zip
+2025-11-06 14:33:15,216 [INFO] About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/142.0.7444.61/linux64/chromedriver-linux64.zip
+2025-11-06 14:33:16,424 [INFO] Driver downloading response is 200
+2025-11-06 14:33:23,681 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 14:33:24,657 [INFO] Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.61]
+2025-11-06 14:45:14,458 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 14:45:17,982 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&order=created_at.desc "HTTP/1.1 200 OK"
+2025-11-06 14:45:24,293 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 14:45:47,239 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.emanuele%40sevensuprimentos.com.br "HTTP/1.1 200 OK"
+2025-11-06 14:45:59,126 [INFO] HTTP Request: PATCH https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-06 14:46:34,197 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.emanuele%40sevensuprimentos.com.br "HTTP/1.1 200 OK"
+2025-11-06 14:46:38,024 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 14:46:44,890 [INFO] HTTP Request: PATCH https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-06 14:46:48,014 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 14:46:56,350 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 14:54:14,816 [INFO] HTTP Request: PATCH https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?id=eq.1d6f506e-9c68-4c8b-8b0d-7d44ec1c0a53 "HTTP/1.1 200 OK"
+2025-11-06 14:57:15,958 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 14:58:14,083 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:00:12,655 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:02:13,641 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:02:36,267 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 15:05:27,565 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:05:33,220 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 15:17:00,484 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:17:04,753 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 15:19:10,812 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:19:13,646 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 15:24:03,058 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:24:37,657 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:24:55,272 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:25:10,152 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:25:48,988 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:26:54,965 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:27:38,489 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:28:07,707 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:28:27,499 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:28:59,945 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 15:29:03,565 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 15:29:14,437 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&order=created_at.desc "HTTP/1.1 200 OK"
+2025-11-06 15:30:05,717 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:30:07,746 [INFO] HTTP Request: POST https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users "HTTP/1.1 201 Created"
+2025-11-06 15:30:11,063 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&order=created_at.desc "HTTP/1.1 200 OK"
+2025-11-06 15:30:54,673 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.ulissesmfg%40gmail.com "HTTP/1.1 200 OK"
+2025-11-06 15:30:55,530 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.b52e19ec-7bc5-4f36-9267-f2baf249db1f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 15:31:24,543 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.b52e19ec-7bc5-4f36-9267-f2baf249db1f "HTTP/1.1 200 OK"
+2025-11-06 15:31:34,706 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-06 15:32:22,853 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.b52e19ec-7bc5-4f36-9267-f2baf249db1f "HTTP/1.1 200 OK"
+2025-11-06 15:32:23,230 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.b52e19ec-7bc5-4f36-9267-f2baf249db1f "HTTP/1.1 200 OK"
+2025-11-06 15:32:23,728 [INFO] HTTP Request: POST https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config "HTTP/1.1 201 Created"
+2025-11-06 15:32:27,294 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.b52e19ec-7bc5-4f36-9267-f2baf249db1f "HTTP/1.1 200 OK"
+2025-11-06 15:32:35,289 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.b52e19ec-7bc5-4f36-9267-f2baf249db1f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 15:32:44,405 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 15:32:46,502 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.b52e19ec-7bc5-4f36-9267-f2baf249db1f "HTTP/1.1 200 OK"
+2025-11-06 15:32:46,666 [INFO] ====== WebDriver manager ======
+2025-11-06 15:32:47,263 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 15:32:48,322 [INFO] Get LATEST chromedriver version for google-chrome
+2025-11-06 15:32:49,244 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/142.0.7444.61/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2025-11-06 17:08:20,157 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-06 17:08:45,088 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 17:08:48,858 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 17:19:34,112 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-06 17:20:00,391 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 17:20:01,892 [INFO] HTTP Request: PATCH https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-06 17:20:05,983 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 17:20:06,881 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f "HTTP/1.1 200 OK"
+2025-11-06 18:14:50,707 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-06 18:15:05,625 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2025-11-06 18:15:09,541 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.d464cc2e-4dc3-459c-b1ac-62ececf09a0f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-07 12:32:42,198 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-07 12:32:46,073 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&email=eq.ulissesmfg%40gmail.com "HTTP/1.1 200 OK"
+2025-11-07 12:32:50,918 [INFO] HTTP Request: GET https://wjjmrsnfvbgkgwyaqmcs.supabase.co/rest/v1/users?select=%2A&id=eq.b52e19ec-7bc5-4f36-9267-f2baf249db1f&is_active=eq.True "HTTP/1.1 200 OK"
+2025-11-08 21:23:08,051 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-10 12:56:37,260 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-10 13:09:35,871 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-13 13:31:36,155 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-17 13:49:52,081 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-17 16:41:33,511 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-11-18 12:21:11,271 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-12-29 15:53:13,999 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-12-29 15:53:46,382 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-12-29 15:54:24,681 [ERROR] Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/routes/auth_routes.py", line 21, in login
+    if not user.get("is_active", True):
+           ^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2025-12-29 15:55:07,652 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-12-29 15:55:38,963 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-12-29 17:14:51,080 [ERROR] Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/routes/auth_routes.py", line 21, in login
+    if not user.get("is_active", True):
+           ^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2025-12-29 17:15:22,829 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-12-29 17:15:54,328 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-12-29 17:16:00,209 [ERROR] Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/routes/auth_routes.py", line 21, in login
+    if not user.get("is_active", True):
+           ^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2025-12-29 17:16:32,820 [INFO] ✅ AutoQuote aplicação iniciada.
+2025-12-30 20:48:32,663 [WARNING] Exception raised while handling cache file '/app/flask_session/2029240f6d1128be89ddc32729463129'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/cachelib/file.py", line 267, in set
+    self._run_safely(os.replace, tmp, filename)
+  File "/usr/local/lib/python3.11/site-packages/cachelib/file.py", line 336, in _run_safely
+    output = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/app/flask_session/tmp7p6ur4w0.__wz_cache' -> '/app/flask_session/2029240f6d1128be89ddc32729463129'
+2026-01-06 17:46:44,873 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-06 17:47:18,387 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-06 18:15:00,613 [ERROR] Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/routes/auth_routes.py", line 21, in login
+    if not user.get("is_active", True):
+           ^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-01-06 18:33:57,571 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-06 18:37:28,926 [ERROR] Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/routes/auth_routes.py", line 18, in login
+    user = UserModel.get_user_by_email(email)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/models.py", line 65, in get_user_by_email
+    client = Database.get_client()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/models.py", line 15, in get_client
+    cls._instance = supabase.create_client(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/supabase/client.py", line 272, in create_client
+    return Client(supabase_url=supabase_url, supabase_key=supabase_key, options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/supabase/client.py", line 58, in __init__
+    raise SupabaseException("Invalid API key")
+supabase.client.SupabaseException: Invalid API key
+2026-01-06 18:37:31,803 [ERROR] Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/routes/auth_routes.py", line 18, in login
+    user = UserModel.get_user_by_email(email)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/models.py", line 65, in get_user_by_email
+    client = Database.get_client()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/models.py", line 15, in get_client
+    cls._instance = supabase.create_client(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/supabase/client.py", line 272, in create_client
+    return Client(supabase_url=supabase_url, supabase_key=supabase_key, options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/supabase/client.py", line 58, in __init__
+    raise SupabaseException("Invalid API key")
+supabase.client.SupabaseException: Invalid API key
+2026-01-06 18:37:52,927 [ERROR] Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/routes/auth_routes.py", line 18, in login
+    user = UserModel.get_user_by_email(email)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/models.py", line 65, in get_user_by_email
+    client = Database.get_client()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/models.py", line 15, in get_client
+    cls._instance = supabase.create_client(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/supabase/client.py", line 272, in create_client
+    return Client(supabase_url=supabase_url, supabase_key=supabase_key, options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/supabase/client.py", line 58, in __init__
+    raise SupabaseException("Invalid API key")
+supabase.client.SupabaseException: Invalid API key
+2026-01-06 18:37:55,936 [ERROR] Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/routes/auth_routes.py", line 18, in login
+    user = UserModel.get_user_by_email(email)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/models.py", line 65, in get_user_by_email
+    client = Database.get_client()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/models.py", line 15, in get_client
+    cls._instance = supabase.create_client(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/supabase/client.py", line 272, in create_client
+    return Client(supabase_url=supabase_url, supabase_key=supabase_key, options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/supabase/client.py", line 58, in __init__
+    raise SupabaseException("Invalid API key")
+supabase.client.SupabaseException: Invalid API key
+2026-01-06 18:38:28,148 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-06 18:58:40,439 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-06 19:58:42,093 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-06 19:58:43,446 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 401 Unauthorized"
+2026-01-06 19:58:43,448 [ERROR] Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/routes/auth_routes.py", line 21, in login
+    if not user.get("is_active", True):
+           ^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-01-06 20:05:09,509 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-06 20:13:05,754 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2026-01-06 20:13:09,890 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1&is_active=eq.True "HTTP/1.1 200 OK"
+2026-01-06 20:13:18,146 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&order=created_at.desc "HTTP/1.1 200 OK"
+2026-01-06 20:13:30,239 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1&is_active=eq.True "HTTP/1.1 200 OK"
+2026-01-06 20:13:32,746 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-06 22:52:00,686 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-06 22:52:01,028 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-06 22:52:01,510 [INFO] HTTP Request: POST https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config "HTTP/1.1 201 Created"
+2026-01-06 22:52:04,561 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-06 22:52:05,112 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-06 22:52:05,711 [INFO] HTTP Request: PATCH https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-06 22:52:06,253 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-06 22:52:09,880 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1&is_active=eq.True "HTTP/1.1 200 OK"
+2026-01-06 22:52:19,874 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-06 22:52:21,562 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-06 22:52:21,706 [INFO] ====== WebDriver manager ======
+2026-01-06 22:52:22,611 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-06 22:52:23,592 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-06 22:52:24,526 [INFO] There is no [linux64] chromedriver "143.0.7499.192" for browser google-chrome "143.0.7499" in cache
+2026-01-06 22:52:24,527 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-06 22:52:27,016 [INFO] WebDriver version 143.0.7499.192 selected
+2026-01-06 22:52:27,027 [INFO] Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/linux64/chromedriver-linux64.zip
+2026-01-06 22:52:27,029 [INFO] About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/linux64/chromedriver-linux64.zip
+2026-01-06 22:52:27,861 [INFO] Driver downloading response is 200
+2026-01-06 22:52:34,579 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-06 22:52:35,512 [INFO] Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/143.0.7499.192]
+2026-01-06 23:08:23,939 [INFO] ✅ AutoQuote aplicação iniciada.
