@@ -482,3 +482,8 @@ AttributeError: 'NoneType' object has no attribute 'get'
 2026-01-06 22:52:34,579 [INFO] Get LATEST chromedriver version for google-chrome
 2026-01-06 22:52:35,512 [INFO] Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/143.0.7499.192]
 2026-01-06 23:08:23,939 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-06 23:08:25,150 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-06 23:08:25,455 [INFO] ====== WebDriver manager ======
+2026-01-06 23:08:25,634 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-06 23:08:26,667 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-06 23:08:27,499 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/143.0.7499.192/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache

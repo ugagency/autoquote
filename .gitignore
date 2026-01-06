@@ -1,0 +1,22 @@
+# Ambiente
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+
+# Virtualenv
+venv/
+.env/
+.venv/
+
+# Flask
+instance/
+.webassets-cache
+
+# Sistema
+.DS_Store
+Thumbs.db
