@@ -487,3 +487,50 @@ AttributeError: 'NoneType' object has no attribute 'get'
 2026-01-06 23:08:25,634 [INFO] Get LATEST chromedriver version for google-chrome
 2026-01-06 23:08:26,667 [INFO] Get LATEST chromedriver version for google-chrome
 2026-01-06 23:08:27,499 [INFO] Driver [/root/.wdm/drivers/chromedriver/linux64/143.0.7499.192/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2026-01-07 11:52:46,112 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-07 11:53:36,400 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2026-01-07 11:53:39,659 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1&is_active=eq.True "HTTP/1.1 200 OK"
+2026-01-07 11:53:57,981 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-07 11:53:59,722 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-07 11:54:00,037 [INFO] ====== WebDriver manager ======
+2026-01-07 11:54:01,092 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 11:54:01,720 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 11:54:02,184 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 11:54:03,853 [INFO] WebDriver version 143.0.7499.192 selected
+2026-01-07 11:54:03,865 [INFO] Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/linux64/chromedriver-linux64.zip
+2026-01-07 11:54:03,869 [INFO] About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/linux64/chromedriver-linux64.zip
+2026-01-07 11:54:04,639 [INFO] Driver downloading response is 200
+2026-01-07 11:54:14,573 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 11:54:15,809 [INFO] Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/143.0.7499.192]
+2026-01-07 16:21:26,083 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-07 17:19:57,522 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-07 17:20:34,281 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-07 17:22:22,953 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&email=eq.admin%40autoquote.com "HTTP/1.1 200 OK"
+2026-01-07 17:22:26,363 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/users?select=%2A&id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1&is_active=eq.True "HTTP/1.1 200 OK"
+2026-01-07 17:22:35,097 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-07 17:22:36,937 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-07 17:22:37,180 [INFO] ====== WebDriver manager ======
+2026-01-07 17:22:38,643 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 17:22:39,338 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 17:22:40,321 [INFO] There is no [linux64] chromedriver "143.0.7499.192" for browser google-chrome "143.0.7499" in cache
+2026-01-07 17:22:40,322 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 17:22:41,854 [INFO] WebDriver version 143.0.7499.192 selected
+2026-01-07 17:22:41,862 [INFO] Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/linux64/chromedriver-linux64.zip
+2026-01-07 17:22:41,863 [INFO] About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/linux64/chromedriver-linux64.zip
+2026-01-07 17:22:42,663 [INFO] Driver downloading response is 200
+2026-01-07 17:22:58,036 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 17:22:58,744 [INFO] Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/143.0.7499.192]
+2026-01-07 17:38:16,654 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-07 17:38:30,583 [INFO] ✅ AutoQuote aplicação iniciada.
+2026-01-07 17:38:32,044 [INFO] HTTP Request: GET https://rzglsaargcpwewrgzwtx.supabase.co/rest/v1/user_vale_config?select=%2A&user_id=eq.92f0c4ec-d125-45c1-86bc-f419ec36b2e1 "HTTP/1.1 200 OK"
+2026-01-07 17:38:32,230 [INFO] ====== WebDriver manager ======
+2026-01-07 17:38:32,407 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 17:38:32,876 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 17:38:33,359 [INFO] There is no [linux64] chromedriver "143.0.7499.192" for browser google-chrome "143.0.7499" in cache
+2026-01-07 17:38:33,359 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 17:38:34,737 [INFO] WebDriver version 143.0.7499.192 selected
+2026-01-07 17:38:34,753 [INFO] Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/linux64/chromedriver-linux64.zip
+2026-01-07 17:38:34,755 [INFO] About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/linux64/chromedriver-linux64.zip
+2026-01-07 17:38:35,556 [INFO] Driver downloading response is 200
+2026-01-07 17:38:46,977 [INFO] Get LATEST chromedriver version for google-chrome
+2026-01-07 17:38:47,649 [INFO] Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/143.0.7499.192]

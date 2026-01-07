@@ -1,9 +1,16 @@
 import os
 import re
 import time
-from datetime import datetime
+import shutil
+import tempfile
+import threading
+from datetime import datetime, date
 from app.models import UserModel
+from app import create_app
 
+# ===============================
+# DEFINIÇÃO DA FUNÇÃO PRINCIPAL
+# ===============================
 def executar_robo_vale(data_coleta, user_id=None, log_callback=None):
     from selenium import webdriver
     from selenium.webdriver.common.by import By
@@ -14,6 +21,12 @@ def executar_robo_vale(data_coleta, user_id=None, log_callback=None):
     from selenium.webdriver.chrome.options import Options
     from openpyxl import Workbook, load_workbook
     from webdriver_manager.chrome import ChromeDriverManager
+    from selenium.common.exceptions import (
+        StaleElementReferenceException,
+        ElementClickInterceptedException,
+        ElementNotInteractableException,
+        WebDriverException,
+    )
 
     # ===============================
     # LOG SETUP
@@ -51,14 +64,48 @@ def executar_robo_vale(data_coleta, user_id=None, log_callback=None):
         raise ValueError("Data inválida! Use o formato DDMMAA (ex: 191025).")
 
     HOJE_str = f"{data_coleta[:2]}/{data_coleta[2:4]}/{data_coleta[4:]}"
-    HOJE = datetime.strptime(HOJE_str, "%d/%m/%y").date()
+    
+    def parse_date_str(s: str):
+        """Tenta vários formatos e retorna datetime.date ou None."""
+        if not s: return None
+        s = s.strip()
+        for fmt in ("%d/%m/%y", "%d/%m/%Y"):
+            try:
+                return datetime.strptime(s, fmt).date()
+            except Exception:
+                continue
+        # tentativa extra com regex
+        m = re.search(r'(\d{1,2}/\d{1,2}/\d{2,4})', s)
+        if m:
+            for fmt in ("%d/%m/%y", "%d/%m/%Y"):
+                try:
+                    return datetime.strptime(m.group(1), fmt).date()
+                except:
+                    continue
+        return None
+
+    HOJE = parse_date_str(HOJE_str)
+    if not HOJE:
+        raise ValueError("Data fornecida é inválida.")
+    
     log(f"📅 Executando coleta para {HOJE.strftime('%d/%m/%Y')}", 10)
+
+    ESTADOS = [
+        'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG',
+        'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+    ]
 
     # ===============================
     # PREPARAÇÃO DE PLANILHA
     # ===============================
     filename = f"planilha_vale_{HOJE.strftime('%d%m%y')}.xlsx"
-    OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'output',str(user_id))
+    # Ajuste de caminho para garantir que salva no output correto
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    OUTPUT_DIR = os.path.join(base_dir, 'output', str(user_id))
+    
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
+        
     EXCEL_PATH = os.path.join(OUTPUT_DIR, filename)
     log(f"💾 Caminho do Excel: {EXCEL_PATH}")
 
@@ -71,7 +118,7 @@ def executar_robo_vale(data_coleta, user_id=None, log_callback=None):
     wb = Workbook()
     ws = wb.active
     ws.title = "Eventos"
-    ws.append(["Número do evento", "UF(VALE)", "DATA", "DESCRIÇÃO", "QTDE", "UNID. MED", "Página de descrição"])
+    ws.append(["Numero do evento", "UF(VALE)", "DATA", "DESCRIÇÃO", "QTDE", "UNID. MED", "pagina de descrição"])
     wb.save(EXCEL_PATH)
     log("📗 Planilha inicial criada.", 15)
 
@@ -79,12 +126,14 @@ def executar_robo_vale(data_coleta, user_id=None, log_callback=None):
     # CONFIGURAÇÃO DO SELENIUM
     # ===============================
     chrome_options = Options()
+    # Adicionando flags importantes para rodar em container/headless
     chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=1920,1080")
-
+    
+    # Gerenciamento do Driver
     base_driver_path = ChromeDriverManager().install()
 
     def find_chromedriver(base_path):
@@ -98,432 +147,493 @@ def executar_robo_vale(data_coleta, user_id=None, log_callback=None):
         for path in possible_paths:
             if os.path.exists(path):
                 return path
-        raise FileNotFoundError(f"Chromedriver não encontrado em: {possible_paths}")
+        # Fallback: se for windows, tenta achar o exe
+        for path in possible_paths:
+            if os.path.exists(path + ".exe"):
+                return path + ".exe"
+        return base_path # Retorna o base path mesmo se não achar exato, as vezes o manager retorna o executavel direto
 
     driver_path = find_chromedriver(base_driver_path)
-    os.chmod(driver_path, 0o755)
+    
+    # Garante permissão de execução no linux
+    try:
+        if os.name != 'nt':
+            os.chmod(driver_path, 0o755)
+    except Exception:
+        pass
+
     service = Service(driver_path)
     driver = webdriver.Chrome(service=service, options=chrome_options)
     wait = WebDriverWait(driver, 10)
     log("🚀 Selenium WebDriver iniciado com sucesso.", 20)
 
-    # ===============================
-    # LOGIN NO PORTAL VALE
-    # ===============================
-    log("🌐 Acessando portal Vale...", 25)
-    driver.get("https://vale.coupahost.com/sessions/supplier_login")
-
-    wait.until(EC.presence_of_element_located((By.ID, "user_login")))
-    driver.find_element(By.ID, "user_login").send_keys(USER)
-    driver.find_element(By.ID, "user_password").send_keys(PASS, Keys.RETURN)
-    log("🔐 Login efetuado com sucesso!", 30)
-
-
-    # ===============================
-    # BUSCA DE EVENTOS
-    # ===============================
-    # Clica no elemento de data duas vezes
     try:
-        time_filter = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ch_start_time"]')))
-        time_filter.click()
-        time.sleep(5)
-        time_filter = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ch_start_time"]')))
-        time_filter.click()
-    except:
-        pass
+        # ===============================
+        # LOGIN
+        # ===============================
+        driver.get("https://vale.coupahost.com/sessions/supplier_login")
 
-    ESTADOS = [
-        'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG',
-        'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
-    ]
+        wait.until(EC.presence_of_element_located((By.ID, "user_login")))
+        driver.find_element(By.ID, "user_login").send_keys(USER)
+        driver.find_element(By.ID, "user_password").send_keys(PASS, Keys.RETURN)
+        log("🔐 Login enviado...", 25)
 
-    def parse_date_str(s: str):
-        """Tenta converter uma string em data válida"""
-        if not s:
-            return None
-        s = s.strip()
-        for fmt in ("%d/%m/%y", "%d/%m/%Y"):
-            try:
-                return datetime.strptime(s, fmt).date()
-            except:
-                continue
-        m = re.search(r'(\d{1,2}/\d{1,2}/\d{2,4})', s)
-        if m:
-            for fmt in ("%d/%m/%y", "%d/%m/%Y"):
-                try:
-                    return datetime.strptime(m.group(1), fmt).date()
-                except:
-                    continue
-        return None
-
-    encontrou_ontem = False
-    total_eventos = 0
-
-    log("🔎 Iniciando coleta de eventos...", 35)
-    while True:
-        time.sleep(2)
+        # ===============================
+        # FILTRO DE DATA
+        # ===============================
+        # Clica no elemento de data duas vezes
         try:
-            tbody = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="quote_request_table_tag"]')))
-        except Exception:
-            log("⚠️ Não encontrou tabela de eventos. Encerrando coleta.")
-            break
-
-        linhas = tbody.find_elements(By.TAG_NAME, "tr")
-        log(f"📊 {len(linhas)} linhas encontradas nesta página.")
-
-        for linha in linhas:
-
+            time_filter = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ch_start_time"]')))
+            time_filter.click()
+            time.sleep(5)
+            # Reaplica o clique para garantir ordenação correta se necessário, conforme script original
+            time_filter = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ch_start_time"]')))
+            time_filter.click()
+        except:
+            pass
+        
+        # ===============================
+        # COLETA DA TABELA PRINCIPAL
+        # ===============================
+        encontrou_ontem = False
+        total_eventos = 0
+        log("🔎 Iniciando varredura da tabela de eventos...", 30)
+        
+        while True:
+            time.sleep(3) # Wait pro carregamento da tabela
             try:
-                colunas = linha.find_elements(By.TAG_NAME, "td")
-                if len(colunas) < 7:
-                    continue
-                # pula a linha se existir o ícone amarelo (flag_yellow) em qualquer lugar da linha
-                yellow_flags = linha.find_elements(By.CSS_SELECTOR, "img[src*='flag_yellow']")
-                if yellow_flags:
-                    print("Pulando linha porque contém flag_yellow")
-                    continue
-
-                data_inicio_str = colunas[2].text.strip()
-                data_inicio = parse_date_str(data_inicio_str)
-                if not data_inicio:
-                    continue
-
-                if data_inicio < HOJE:
-                    encontrou_ontem = True
-                    log("📆 Encontrou data anterior, encerrando varredura.")
-                    break
-
-                if data_inicio != HOJE:
-                    continue
-
-                numero_evento = colunas[0].find_element(By.TAG_NAME, "a").text.strip()
-                data_final = colunas[3].text.strip()
-                ws.append([numero_evento, '', data_final, '', '', '', ''])
-                total_eventos += 1
+                tbody = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="quote_request_table_tag"]')))
             except Exception:
-                continue
-
-        wb.save(EXCEL_PATH)
-        log(f"💾 {total_eventos} eventos coletados até agora.", 50)
-
-        if encontrou_ontem:
-            break
-
-        try:
-            proximo = driver.find_element(By.CLASS_NAME, "next_page")
-            if "disabled" in proximo.get_attribute("class"):
+                log("⚠️ Tabela não encontrada ou fim da paginação.")
                 break
-            driver.execute_script("arguments[0].scrollIntoView(true);", proximo)
-            proximo.click()
-        except Exception:
-            break
+                
+            # Estratégia Anti-Stale: Conta linhas e itera por índice, recarregando a cada passo
+            try:
+                rows_count = len(tbody.find_elements(By.TAG_NAME, "tr"))
+            except:
+                rows_count = 0
+                
+            log(f"📄 Página atual: {rows_count} linhas encontradas.")
 
-    log("📄 Coleta principal concluída.", 60)
-
-    # ===============================
-    # DETALHAMENTO DE EVENTOS
-    # ===============================
-    try:
-        wb = load_workbook(EXCEL_PATH)
-        ws = wb["Eventos"]
-    except Exception as e:
-        driver.quit()
-        log(f"❌ Falha ao abrir planilha: {e}")
-        raise
-    eventos_unicos = list(set([row[0].value for row in ws.iter_rows(min_row=2) if row[0].value]))
-    total_eventos_detalhar = len(eventos_unicos)
-    eventos_processados_global = 0
-
-    log("🔍 Iniciando detalhamento dos eventos...", 70)
-    for row in ws.iter_rows(min_row=2):
-        evento = row[0].value
-        if not evento:
-            continue
-        driver.get(f"https://vale.coupahost.com/quotes/external_responses/{evento}/edit")
-        wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-
-        # --- VERIFICA EXISTÊNCIA DA PÁGINA DE DESCRIÇÃO ---
-        try:
-            botoes1 = driver.find_elements(By.XPATH, '//*[@id="pageContentWrapper"]/div[3]/div[2]/a[2]/span')
-            if not botoes1:
-                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                botoes2 = driver.find_elements(By.ID, 'quote_response_submit')
-                if botoes2:
-                    botoes2[0].click()
-        except Exception:
-            row[6].value = "Erro ao verificar página de descrição"
-
-        # Scroll e abre seção das informações
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "s-expandLines")))
-        elementos = driver.find_elements(By.CLASS_NAME, "s-expandLines")
-
-        if not elementos:
-            print(f"⚠️ Nenhum s-expandLines encontrado no evento {evento}")
-            continue
-
-        # Duplicar a linha do evento pelo número de elementos encontrados
-        linhas_evento = [row]
-        if len(elementos) > 1:
-            for i in range(len(elementos) - 1):
-                nova_linha = [evento, row[1].value, row[2].value, '', '', '', '']
-                ws.append(nova_linha)
-            wb.save(EXCEL_PATH)
-            linhas_evento = [r for r in ws.iter_rows(min_row=2) if r[0].value == evento]
-
-        # Percorre cada s-expandLines e coleta os dados (re-fetch a cada iteração, marca processed via JS)
-        def click_element_retry(el, attempts=4, pause=0.4):
-            from selenium.common.exceptions import (
-                StaleElementReferenceException,
-                ElementClickInterceptedException,
-                ElementNotInteractableException,
-                WebDriverException,
-            )
-            for _ in range(attempts):
+            # --- Buscar os números do evento ---
+            for i in range(rows_count):
                 try:
-                    driver.execute_script("arguments[0].scrollIntoView({block:'center'});", el)
-                    time.sleep(0.15)
-                    el.click()
-                    return True
-                except (StaleElementReferenceException, ElementClickInterceptedException, ElementNotInteractableException, WebDriverException):
+                    # Re-fetch para evitar StaleElementReferenceException
+                    tbody_fresh = driver.find_element(By.XPATH, '//*[@id="quote_request_table_tag"]')
+                    linhas_fresh = tbody_fresh.find_elements(By.TAG_NAME, "tr")
+                    
+                    if i >= len(linhas_fresh):
+                        break # Tabela encolheu
+                        
+                    linha = linhas_fresh[i]
+                    colunas = linha.find_elements(By.TAG_NAME, "td")
+                    
+                    if not colunas or len(colunas) < 7:
+                        continue
+
+                    # pula a linha se existir o ícone amarelo (flag_yellow) em qualquer lugar da linha
+                    yellow_flags = linha.find_elements(By.CSS_SELECTOR, "img[src*='flag_yellow']")
+                    if yellow_flags:
+                        continue
+
+                    # Identifica Status (Coluna 4 - 0-based)
                     try:
-                        driver.execute_script("arguments[0].click();", el)
-                        return True
-                    except Exception:
-                        time.sleep(pause)
-            return False
-
-        # determina quantos existem no DOM no momento (evita usar lista obsoleta)
-        total = driver.execute_script("return document.querySelectorAll('.s-expandLines').length")
-        if total == 0:
-            print(f"⚠️ Nenhum s-expandLines encontrado no evento {evento}")
-            continue
-
-        # duplicar linha já feito acima; garante linhas_evento atualizado
-        linhas_evento = [r for r in ws.iter_rows(min_row=2) if r[0].value == evento]
-
-        processed = 0
-        max_attempts_per_index = 5
-        idx = 0
-        while processed < total and idx < total:
-            # re-obtem a lista sempre
-            try:
-                elementos = driver.find_elements(By.CLASS_NAME, "s-expandLines")
-            except Exception:
-                time.sleep(0.3)
-                elementos = driver.find_elements(By.CLASS_NAME, "s-expandLines")
-
-            if idx >= len(elementos):
-                # DOM encolheu — tenta refetch algumas vezes
-                retry_try = 0
-                while retry_try < 3 and idx >= len(elementos):
-                    time.sleep(0.4)
-                    elementos = driver.find_elements(By.CLASS_NAME, "s-expandLines")
-                    retry_try += 1
-                if idx >= len(elementos):
-                    print(f"⚠️ Índice {idx} fora do range atual ({len(elementos)}). Pulando.")
-                    idx += 1
-                    continue
-
-            el = elementos[idx]
-
-            # evita re-processar elemento já marcado
-            already = driver.execute_script("return arguments[0].getAttribute('data-processed')", el)
-            if already:
-                idx += 1
-                processed += 1
-                continue
-
-            # tenta clicar de forma robusta
-            if not click_element_retry(el, attempts=4, pause=0.4):
-                print(f"⚠️ Falha ao clicar no expandLines index {idx} do evento {evento}")
-                # marca como processado para não travar loop
-                try:
-                    driver.execute_script("arguments[0].setAttribute('data-processed','1')", el)
-                except Exception:
-                    pass
-                idx += 1
-                processed += 1
-                continue
-
-            # após clique, espera conteúdo de detalhe carregar (xpath de descrição)
-            try:
-                wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="itemsAndServicesApp"]/div/div/div[1]')))
-                time.sleep(0.25)
-            except Exception:
-                time.sleep(0.4)
-
-            # atualiza linhas_evento porque podem ter sido adicionadas
-            linhas_evento = [r for r in ws.iter_rows(min_row=2) if r[0].value == evento]
-            try:
-                linha_atual = linhas_evento[idx]
-            except Exception:
-                # se não existir, tenta mapear para próxima disponível
-                if linhas_evento:
-                    linha_atual = linhas_evento[-1]
-                else:
-                    print(f"⚠️ Não há linha disponível para evento {evento} no idx {idx}")
-                    # marca e segue
-                    try:
-                        driver.execute_script("arguments[0].setAttribute('data-processed','1')", el)
+                        status_text = colunas[4].text.strip()
+                        if "Concluído" in status_text:
+                            continue
                     except Exception:
                         pass
+
+                    data_inicio_str = colunas[2].text.strip()
+                    data_inicio = parse_date_str(data_inicio_str)
+                    
+                    if data_inicio is None:
+                        continue
+
+                    if data_inicio < HOJE:
+                        encontrou_ontem = True
+                        log(f"⏹️ Encontrada data anterior ({data_inicio}), parando coleta.")
+                        break
+
+                    if data_inicio != HOJE:
+                        continue
+                        
+                    # Busca segura do link
+                    try:
+                        link_el = colunas[0].find_element(By.TAG_NAME, "a")
+                        numero_evento = link_el.text.strip()
+                    except:
+                        continue
+                        
+                    data_final = colunas[3].text.strip()
+                    
+                    ws.append([numero_evento, '', data_final, '', '', '', ''])
+
+                except Exception as e:
+                    # print(f"Erro ao ler linha {i}: {e}")
+                    continue
+
+            if encontrou_ontem:
+                break
+
+            try:
+                # Tenta avançar página
+                proximo = driver.find_element(By.CLASS_NAME, "next_page")
+                if "disabled" in proximo.get_attribute("class"):
+                    break
+                    
+                driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", proximo)
+                time.sleep(1)
+                proximo.click()
+                time.sleep(2)
+            except Exception:
+                break
+
+        wb.save(EXCEL_PATH)
+        log(f"💾 Coleta inicial finalizada. Planilha salva.", 50)
+
+        # ===============================
+        # DETALHAMENTO DE CADA EVENTO
+        # ===============================
+        wb = load_workbook(EXCEL_PATH)
+        ws = wb["Eventos"]
+        
+        # Coleta lista de eventos na memória para iterar sem travar o openpyxl
+        rows_to_process = []
+        for row in ws.iter_rows(min_row=2):
+            if row[0].value:
+                rows_to_process.append(row[0].value)
+        
+        # Remove duplicatas preservando ordem
+        eventos_unicos = []
+        seen = set()
+        for e in rows_to_process:
+            if e not in seen:
+                eventos_unicos.append(e)
+                seen.add(e)
+                
+        total_detalhar = len(eventos_unicos)
+        count_detalhado = 0
+        
+        log(f"🔍 Iniciando detalhamento de {total_detalhar} eventos...", 55)
+
+        for evento in eventos_unicos:
+            count_detalhado += 1
+            # Como estamos editando a planilha, precisamos recarregar as linhas que correspondem a este evento
+            # Mas o jeito mais facil é iterar sobre a planilha, achar as linhas desse evento e preencher
+            pass # Lógica abaixo faz isso
+            
+            driver.get(f"https://vale.coupahost.com/quotes/external_responses/{evento}/edit")
+            try:
+                wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+            except:
+                log(f"⚠️ Timeout ao carregar página do evento {evento}")
+                continue
+
+            # --- VERIFICA EXISTÊNCIA DA PÁGINA DE DESCRIÇÃO ---
+            try:
+                botoes1 = driver.find_elements(By.XPATH, '//*[@id="pageContentWrapper"]/div[3]/div[2]/a[2]/span')
+                if not botoes1:
+                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                    botoes2 = driver.find_elements(By.ID, 'quote_response_submit')
+                    if botoes2:
+                        botoes2[0].click()
+            except Exception:
+                pass # Pode ser que já esteja na página certa
+
+            # Scroll e abre seção das informações
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            try:
+                wait.until(EC.presence_of_element_located((By.CLASS_NAME, "s-expandLines")))
+            except:
+                # Se não tem s-expandLines, talvez não tenha itens ou nao carregou
+                log(f"⚠️ Nenhum item expansível (s-expandLines) no evento {evento}")
+                continue
+                
+            elementos = driver.find_elements(By.CLASS_NAME, "s-expandLines")
+
+            if not elementos:
+                continue
+
+            # Duplicar a linha do evento se houver múltiplos itens
+            # A lógica original do usuário duplicava as linhas na planilha
+            # Para simplificar a manipulação do Excel, vamos encontrar as linhas na planilha atual
+            # e adicionar novas se necessário.
+            # OBS: O script do usuário faz append de novas linhas no final. Isso pode desordenar, mas ele ordena no fim.
+            
+            # Encontra a linha "modelo" desse evento
+            linha_modelo = None
+            rows_list = list(ws.iter_rows(min_row=2))
+            for r in rows_list:
+                if str(r[0].value) == str(evento):
+                    linha_modelo = r
+                    break
+            
+            if not linha_modelo:
+                continue # Estranho, devia ter
+            
+            # Se tem mais elementos do que linhas atuais, cria novas
+            # Mas como não sabemos quantas linhas já tem (se rodou parcial), vamos assumir a lógica do usuário:
+            # Ele sempre faz append de (N-1) linhas novas se encontrar N elementos
+            # Para evitar duplicatas infinitas se rodar de novo, ideal seria limpar, mas vamos seguir o script:
+            if len(elementos) > 1:
+                vals = [c.value for c in linha_modelo]
+                for i in range(len(elementos) - 1):
+                    # Cria nova linha com dados básicos
+                    # [Numero, UF, DATA, DESC, QTDE, UNID, PAG]
+                    ws.append([vals[0], '', vals[2], '', '', '', '']) 
+                wb.save(EXCEL_PATH)
+            
+            # Helper interno de clique
+            def click_element_retry(el, attempts=4, pause=0.4):
+                for _ in range(attempts):
+                    try:
+                        driver.execute_script("arguments[0].scrollIntoView({block:'center'});", el)
+                        time.sleep(0.15)
+                        el.click()
+                        return True
+                    except (StaleElementReferenceException, ElementClickInterceptedException, ElementNotInteractableException, WebDriverException):
+                        try:
+                            driver.execute_script("arguments[0].click();", el)
+                            return True
+                        except Exception:
+                            time.sleep(pause)
+                return False
+
+            total = driver.execute_script("return document.querySelectorAll('.s-expandLines').length")
+            processed = 0
+            idx = 0
+            
+            # Recarrega a planilha para ter as linhas novas
+            # Filtrar apenas linhas deste evento
+            relevant_rows = []
+            # iterar de novo (ineficiente mas seguro conforme script)
+            for r in ws.iter_rows(min_row=2):
+                if str(r[0].value) == str(evento):
+                    relevant_rows.append(r)
+            
+            # Loop de processamento de itens
+            while processed < total and idx < total:
+                try:
+                    elementos = driver.find_elements(By.CLASS_NAME, "s-expandLines")
+                except:
+                    time.sleep(0.3)
+                    elementos = driver.find_elements(By.CLASS_NAME, "s-expandLines")
+
+                if idx >= len(elementos):
+                     # Retry DOM
+                    time.sleep(0.5)
+                    elementos = driver.find_elements(By.CLASS_NAME, "s-expandLines")
+                    if idx >= len(elementos):
+                         idx += 1
+                         continue
+
+                el = elementos[idx]
+                
+                # Checa se já processou via atributo
+                already = driver.execute_script("return arguments[0].getAttribute('data-processed')", el)
+                if already:
                     idx += 1
                     processed += 1
                     continue
 
-            # coleta campos (mesma lógica, com pequenos waits)
-            try:
-                wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="itemsAndServicesApp"]/div/div/div[1]/div[2]/div[2]/div/form/div/div/div[2]/div/div[2]/div/p/span[1]')))
-            except Exception:
-                time.sleep(1)
-            try:
-                quantidade_el = driver.find_element(By.XPATH, '//*[@id="itemsAndServicesApp"]/div/div/div[1]/div[2]/div[2]/div/form/div/div/div[2]/div/div[2]/div/p/span[1]')
-                linha_atual[4].value = quantidade_el.text
-            except Exception:
-                linha_atual[4].value = 'Não foi possivel coletar a quantidade'
+                if not click_element_retry(el):
+                    # Marca falha e pula
+                    driver.execute_script("arguments[0].setAttribute('data-processed','1')", el)
+                    idx += 1
+                    processed += 1
+                    continue
 
-            try:
-                unidade_el = driver.find_element(By.XPATH, '//*[@id="itemsAndServicesApp"]/div/div/div[1]/div[2]/div[2]/div/form/div/div/div[2]/div/div[2]/div/p/span[2]')
-                linha_atual[5].value = unidade_el.text
-            except Exception:
-                linha_atual[5].value = 'Não foi possivel coletar a unidade'
-
-            try:
-                descri_el = driver.find_element(By.XPATH, '//*[@id="itemsAndServicesApp"]/div/div/div[1]/div[2]/div[2]/div/form/div/div/div[1]/div/div[2]/div/p')
-                descri = descri_el.text
-                desejado = re.search(r'PT\s*\|\|\s*(.*?)\*{3,}', descri, re.DOTALL)
-                linha_atual[3].value = desejado.group(1).strip() if desejado else descri
-            except Exception:
-                linha_atual[3].value = 'Não foi possivel coletar a descrição'
-
-            # UF (versão mais robusta)
-            try:
-                uf_spans = driver.find_elements(
-                    By.XPATH,
-                    '//*[@id="itemsAndServicesApp"]/div/div/div[1]/div[2]/div[2]/div/form/div/div/div[1]/div/div[8]/div/ul/li/span'
-                )
-
-                found = None
-                # tenta primeiro padrão explícito "- XX - BR" em cada span
-                for elem in uf_spans:
-                    text = (elem.text or "").strip().upper()
-                    if not text:
-                        continue
-                    m = re.search(r'-\s*([A-Z]{2})\s*-\s*BR', text)
-                    if m and m.group(1) in ESTADOS:
-                        found = m.group(1)
-                        break
-                    # procura tokens isolados de 2 letras e valida contra ESTADOS
-                    tokens = re.findall(r'\b[A-Z]{2}\b', text)
-                    for t in tokens:
-                        if t in ESTADOS:
-                            found = t
-                            break
-                    if found:
-                        break
-
-                # fallback: junta todo o texto e procura por siglas com bordas de palavra
-                if not found:
-                    combined = " ".join([(e.text or "") for e in uf_spans]).upper()
-                    for sig in ESTADOS:
-                        if re.search(r'\b' + re.escape(sig) + r'\b', combined):
-                            found = sig
-                            break
-
-                linha_atual[1].value = found if found else 'UF não encontrada'
-            except Exception:
-                linha_atual[1].value = 'Não foi possivel coletar a UF'
-
-            # fecha o detalhe (tenta vários métodos)
-            try:
-                time.sleep(0.2)
-                fechar = None
+                # Espera carregar detalhe
                 try:
-                    fechar = driver.find_element(By.CSS_SELECTOR, "button.button.s-cancel")
-                except Exception:
-                    try:
-                        fechar = driver.find_element(By.XPATH, "//button[contains(concat(' ', normalize-space(@class), ' '), ' s-cancel ') and contains(., 'Cancelar')]")
-                    except Exception:
-                        fechar = None
-                if fechar:
-                    click_element_retry(fechar, attempts=3, pause=0.2)
+                    wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="itemsAndServicesApp"]/div/div/div[1]')))
                     time.sleep(0.25)
-            except Exception:
-                pass
+                except:
+                    time.sleep(0.5)
 
-            # marca como processado (para não reprocessar se DOM reorganizar)
-            try:
-                driver.execute_script("arguments[0].setAttribute('data-processed','1')", el)
-            except Exception:
-                pass
+                # Pega a linha correspondente na planilha
+                # Se houver mais itens que linhas (erro de sync), pega a última ou cria (mas aqui pegamos a lista antes)
+                if idx < len(relevant_rows):
+                    linha_atual = relevant_rows[idx]
+                else:
+                    # Fallback raro
+                    linha_atual = relevant_rows[-1] 
 
-            processed += 1
-            idx += 1
-            progresso_global = 70 + int(25 * (eventos_processados_global / total_eventos_detalhar))
-            log(f"📝 Detalhado evento {evento} ({eventos_processados_global}/{total_eventos_detalhar})", progresso_global)
-         
-        
+                # Coleta DADOS
+                # 1. Quantidade
+                try:
+                    quantidade_el = driver.find_element(By.XPATH, '//*[@id="itemsAndServicesApp"]/div/div/div[1]/div[2]/div[2]/div/form/div/div/div[2]/div/div[2]/div/p/span[1]')
+                    linha_atual[4].value = quantidade_el.text
+                except:
+                    linha_atual[4].value = '?'
 
-        wb.save(EXCEL_PATH)
+                # 2. Unidade
+                try:
+                    unidade_el = driver.find_element(By.XPATH, '//*[@id="itemsAndServicesApp"]/div/div/div[1]/div[2]/div[2]/div/form/div/div/div[2]/div/div[2]/div/p/span[2]')
+                    linha_atual[5].value = unidade_el.text
+                except:
+                    linha_atual[5].value = '?'
+                
+                # 3. Descrição
+                try:
+                    descri_el = driver.find_element(By.XPATH, '//*[@id="itemsAndServicesApp"]/div/div/div[1]/div[2]/div[2]/div/form/div/div/div[1]/div/div[2]/div/p')
+                    descri = descri_el.text
+                    desejado = re.search(r'PT\s*\|\|\s*(.*?)\*{3,}', descri, re.DOTALL)
+                    linha_atual[3].value = desejado.group(1).strip() if desejado else descri
+                except:
+                    linha_atual[3].value = 'Erro Desc'
 
-    log("📘 Detalhamento concluído.", 95)
+                # 4. UF Restrita
+                try:
+                    uf_spans = driver.find_elements(
+                        By.XPATH,
+                        '//*[@id="itemsAndServicesApp"]/div/div/div[1]/div[2]/div[2]/div/form/div/div/div[1]/div/div[8]/div/ul/li/span'
+                    )
+                    found = None
+                    for elem in uf_spans:
+                        text = (elem.text or "").strip().upper()
+                        if not text: continue
+                        # Padrão - XX - BR
+                        m = re.search(r'-\s*([A-Z]{2})\s*-\s*BR', text)
+                        if m and m.group(1) in ESTADOS:
+                            found = m.group(1)
+                            break
+                        # Tokens
+                        tokens = re.findall(r'\b[A-Z]{2}\b', text)
+                        for t in tokens:
+                            if t in ESTADOS:
+                                found = t
+                                break
+                        if found: break
+                    
+                    if not found:
+                         combined = " ".join([(e.text or "") for e in uf_spans]).upper()
+                         for sig in ESTADOS:
+                             if re.search(r'\b' + re.escape(sig) + r'\b', combined):
+                                 found = sig
+                                 break
+                    
+                    linha_atual[1].value = found if found else 'ND'
+                except:
+                    linha_atual[1].value = 'Erro UF'
 
-    try:
-        wb.save(EXCEL_PATH)
+                # Fechar detalhe
+                try:
+                    time.sleep(0.2)
+                    fechar = None
+                    # Tenta seletores de fechar
+                    try:
+                        fechar = driver.find_element(By.CSS_SELECTOR, "button.button.s-cancel")
+                    except:
+                        try:
+                            fechar = driver.find_element(By.XPATH, "//button[contains(concat(' ', normalize-space(@class), ' '), ' s-cancel ') and contains(., 'Cancelar')]")
+                        except:
+                            fechar = None
+                    
+                    if fechar:
+                        click_element_retry(fechar, attempts=3, pause=0.2)
+                        time.sleep(0.25)
+                except:
+                    pass
+
+                # Marca processado
+                try:
+                    driver.execute_script("arguments[0].setAttribute('data-processed','1')", el)
+                except:
+                    pass
+
+                idx += 1
+                processed += 1
+            
+            # Salva parcial
+            wb.save(EXCEL_PATH)
+            percent = 50 + int(45 * (count_detalhado / total_detalhar))
+            log(f"📝 Evento {evento} concluído ({count_detalhado}/{total_detalhar})", percent) # type: ignore
+
+        # ===============================
+        # ORDENAÇÃO FINAL
+        # ===============================
+        log("Sort e Salvando final...", 95)
+        try:
+            # Recarrega para ordenar
+            wb = load_workbook(EXCEL_PATH)
+            ws = wb["Eventos"]
+            rows = list(ws.iter_rows(min_row=2, values_only=True))
+
+            def sort_key(row):
+                v = row[0]
+                if v is None: return (1, "")
+                s = str(v).strip()
+                try:
+                    return (0, int(s))
+                except:
+                    return (1, s.lower())
+
+            rows_sorted = sorted(rows, key=sort_key)
+
+            if ws.max_row > 1:
+                ws.delete_rows(2, ws.max_row - 1)
+                
+            for r in rows_sorted:
+                ws.append(list(r))
+            
+            wb.save(EXCEL_PATH)
+        except Exception as e:
+            log(f"⚠️ Erro na ordenação final: {e}")
+
         driver.quit()
-        log(f"✅ Robô finalizado com {total_eventos} eventos coletados.", 100)
+        log(f"✅ Processo finalizado com sucesso! Arquivo: {filename}", 100)
+        
+        return {
+            "sucesso": True,
+            "arquivo": filename,
+            "eventos_coletados": total_detalhar,
+            "logs": f"Sucesso. {total_detalhar} eventos processados."
+        }
+
     except Exception as e:
-        log(f"⚠️ Finalização com erro: {e}")
+        if 'driver' in locals():
+            driver.quit()
+        error_msg = f"Erro fatal na execução: {e}"
+        log(f"❌ {error_msg}")
+        raise e
 
-    return {
-        "sucesso": True,
-        "arquivo": filename,
-        "eventos_coletados": total_eventos,
-        "logs": f"Execução concluída com {total_eventos} eventos coletados."
-    }
-
-import threading
-import tempfile
-import shutil
-import os
-from app import create_app
-
-# controle de execuções ativas
+# ===============================
+# FUNÇÃO ASYNC WRAPPER
+# ===============================
 EXECUCOES_ATIVAS = {}
 
 def executar_robo_vale_async(data_coleta, user_id, log_callback=None):
     """Executa o robô do Vale em thread separada e isolada por usuário."""
     app = create_app()
 
-    # não deixar dois robôs do mesmo usuário rodarem
     if user_id in EXECUCOES_ATIVAS:
         print(f"⚠️ Robô já em execução para user_id={user_id}. Ignorando nova chamada.")
         return
 
     def tarefa():
-        temp_dir = tempfile.mkdtemp(prefix=f"vale_{user_id[:6]}_")
-        os.environ["WDM_LOCAL"] = temp_dir  # força webdriver_manager a usar pasta isolada
-        print(f"🧵 [Thread-{user_id[:6]}] Iniciando robô no diretório {temp_dir}")
-
+        temp_dir = tempfile.mkdtemp(prefix=f"vale_{str(user_id)[:6]}_")
+        os.environ["WDM_LOCAL"] = temp_dir 
+        print(f"🧵 [Thread-{str(user_id)[:6]}] Iniciando robô no diretório {temp_dir}")
+        
+        success = False
         try:
             with app.app_context():
                 EXECUCOES_ATIVAS[user_id] = True
-                from app.services.vale_service import executar_robo_vale
                 executar_robo_vale(
                     data_coleta=data_coleta,
                     user_id=user_id,
                     log_callback=log_callback
                 )
+                success = True
         except Exception as e:
-            print(f"❌ [Thread-{user_id[:6]}] Erro: {e}")
-            import traceback
-            traceback.print_exc()
+            print(f"❌ [Thread-{str(user_id)[:6]}] Erro: {e}")
         finally:
             EXECUCOES_ATIVAS.pop(user_id, None)
             shutil.rmtree(temp_dir, ignore_errors=True)
-            print(f"🧹 [Thread-{user_id[:6]}] Finalizou e limpou {temp_dir}")
+            print(f"🧹 [Thread-{str(user_id)[:6]}] Finalizou (Sucesso: {success})")
 
     thread = threading.Thread(target=tarefa, daemon=True)
     thread.start()
+
 
